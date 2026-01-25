@@ -1,0 +1,417 @@
+# ================================
+# Navya Portfolio v2 - Single Script (UPDATED LINKS)
+# Creates a professional portfolio (React + Vite + Tailwind)
+# ================================
+
+PROJECT="navya-portfolio-v2"
+REPO_BASE="/navya-portfolio-v2/"  # <-- IMPORTANT: change this to "/<your-repo-name>/" for GitHub Pages
+
+mkdir -p "$PROJECT"/{public,src/components}
+
+# ---------- public placeholders ----------
+cat > "$PROJECT/public/photo.jpg" << 'EOF'
+EOF
+
+cat > "$PROJECT/public/resume.pdf" << 'EOF'
+EOF
+
+cat > "$PROJECT/public/favicon.svg" << 'EOF'
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <rect width="120" height="120" rx="24" fill="#0ea5e9"/>
+  <path d="M35 80V40h14c14 0 23 8 23 20s-9 20-23 20H35zm12-10h2c8 0 12-4 12-10s-4-10-12-10h-2v20z" fill="white"/>
+</svg>
+EOF
+
+# ---------- index.html ----------
+cat > "$PROJECT/index.html" << 'EOF'
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navya Gangavarapu | Portfolio</title>
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+EOF
+
+# ---------- package.json ----------
+cat > "$PROJECT/package.json" << 'EOF'
+{
+  "name": "navya-portfolio-v2",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.4.7",
+    "vite": "^5.0.0"
+  }
+}
+EOF
+
+# ---------- vite.config.js ----------
+cat > "$PROJECT/vite.config.js" << EOF
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  base: '${REPO_BASE}'
+})
+EOF
+
+# ---------- tailwind / postcss ----------
+cat > "$PROJECT/tailwind.config.cjs" << 'EOF'
+module.exports = {
+  content: ['./index.html', './src/**/*.{js,jsx}'],
+  theme: {
+    extend: {
+      boxShadow: {
+        soft: '0 10px 30px rgba(2, 6, 23, 0.08)'
+      }
+    }
+  },
+  plugins: []
+}
+EOF
+
+cat > "$PROJECT/postcss.config.cjs" << 'EOF'
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {}
+  }
+}
+EOF
+
+cat > "$PROJECT/src/index.css" << 'EOF'
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html, body { height: 100%; }
+
+body {
+  @apply bg-slate-50 text-slate-900;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+}
+
+a { @apply text-sky-700 hover:text-sky-800; }
+.badge { @apply inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-700; }
+.card { @apply rounded-2xl bg-white shadow-soft border border-slate-100; }
+EOF
+
+# ---------- src/main.jsx ----------
+cat > "$PROJECT/src/main.jsx" << 'EOF'
+import React from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+
+createRoot(document.getElementById('root')).render(<App />)
+EOF
+
+# ---------- src/data.js (UPDATED CONTACTS) ----------
+cat > "$PROJECT/src/data.js" << 'EOF'
+export const profile = {
+  name: 'Navya Gangavarapu',
+  title: 'Senior Java Full Stack Developer',
+  location: 'Irvine, CA',
+  phone: '+1 (909) 907-9247',
+  email: 'navyagangavarapu05@gmail.com',
+  linkedin: 'https://linkedin.com/in/gangavarapu-navya-9500b9231',
+  github: 'https://github.com/navyagangavarapu',
+  medium: 'https://medium.com/@navyagangavarapu05_54546',
+  resumePath: '/resume.pdf',
+  photoPath: '/photo.jpg'
+}
+
+export const aboutLines = [
+  'Senior Java Full Stack Developer with 8+ years delivering enterprise internal platforms across healthcare, utilities, banking, and consulting.',
+  'Strong experience building workflow-driven dashboards, admin portals, and reporting systems used by large internal user communities.',
+  'Backend expertise in designing microservices, secure APIs, system integrations, and asynchronous processing for scalable enterprise solutions.',
+  'Focused on production readiness: stability, observability, performance tuning, incident support, and consistent release practices.',
+  'Hands-on delivery across AWS and Azure, with contribution to GCP deployments as part of multi-cloud strategies.',
+  'Advocate of clean architecture, TDD, automated testing, and quality-driven engineering through code reviews and standards.',
+  'Collaborative Agile practitioner known for technical ownership, documentation discipline, and mentoring junior engineers.'
+]
+
+export const skills = {
+  'Languages': [
+    'Java (8/11/17)', 'JavaScript', 'TypeScript', 'Python', 'SQL', 'PL/SQL', 'C', 'C++'
+  ],
+  'Frontend': [
+    'React.js', 'Angular (4+)', 'Redux (Thunk/Saga/Toolkit)', 'NgRx',
+    'HTML5', 'CSS3', 'Tailwind CSS', 'Bootstrap', 'Material UI', 'PrimeNG'
+  ],
+  'Backend': [
+    'Spring Boot', 'Spring MVC', 'Spring Security (RBAC)', 'Spring Data JPA', 'Hibernate',
+    'Spring Cloud (Eureka/Feign/Config)', 'REST APIs'
+  ],
+  'Messaging & Streaming': [
+    'Apache Kafka', 'Kafka Streams', 'RabbitMQ', 'Azure Service Bus'
+  ],
+  'Databases': [
+    'Oracle', 'PostgreSQL', 'MySQL', 'MongoDB', 'Cassandra', 'Couchbase', 'Redis', 'Azure Cosmos DB'
+  ],
+  'Cloud': [
+    'AWS (EC2/S3/RDS/EKS/CloudWatch)', 'Azure (App Services/AKS/Cosmos DB)', 'Google Cloud Platform (GCP)'
+  ],
+  'CI/CD & DevOps': [
+    'Jenkins', 'GitLab CI/CD', 'Azure DevOps', 'Docker', 'Kubernetes'
+  ],
+  'Testing & Quality': [
+    'TDD', 'JUnit', 'Mockito', 'TestContainers', 'Spock', 'Selenium', 'Postman', 'RestAssured'
+  ],
+  'Observability': [
+    'Log4j', 'SLF4J', 'ELK Stack', 'Prometheus', 'Grafana', 'Fluentd', 'CloudWatch'
+  ],
+  'Core Fundamentals': [
+    'OOP', 'Data Structures', 'Design Patterns', 'SDLC', 'Agile/Scrum', 'Code Reviews', 'Documentation'
+  ]
+}
+
+export const experience = [
+  { company: 'Prime Healthcare', role: 'Java Full Stack Developer', years: 'Oct 2024 – Present', location: 'Irvine, CA' },
+  { company: 'NW Natural', role: 'Java Full Stack Developer', years: 'Aug 2023 – Sep 2024', location: 'Portland, OR' },
+  { company: 'Bluetree Network', role: 'Full Stack Java Developer', years: 'Dec 2021 – Jul 2023', location: 'Madison, WI' },
+  { company: 'Home BancShares', role: 'Software Engineer', years: 'Jun 2020 – Dec 2021', location: 'Conway, AR' },
+  { company: 'Pramati Technologies Pvt Ltd', role: 'Associate Software Engineer', years: 'Jun 2018 – May 2020', location: 'Hyderabad, India' }
+]
+EOF
+
+# ---------- components ----------
+cat > "$PROJECT/src/components/Section.jsx" << 'EOF'
+import React from 'react'
+
+export default function Section({ id, title, children }) {
+  return (
+    <section id={id} className="card p-6">
+      <div className="flex items-center justify-between gap-4 mb-4">
+        <h2 className="text-lg font-semibold">{title}</h2>
+      </div>
+      {children}
+    </section>
+  )
+}
+EOF
+
+cat > "$PROJECT/src/components/Sidebar.jsx" << 'EOF'
+import React from 'react'
+import { profile } from '../data.js'
+
+function LinkRow({ label, href, value }) {
+  return (
+    <div className="flex items-start justify-between gap-3 text-sm">
+      <div className="text-slate-500">{label}</div>
+      <div className="text-right break-all">
+        {href ? (
+          <a className="font-medium" href={href} target="_blank" rel="noreferrer">
+            {value}
+          </a>
+        ) : (
+          <span className="font-medium">{value}</span>
+        )}
+      </div>
+    </div>
+  )
+}
+
+export default function Sidebar() {
+  return (
+    <div className="card p-6 lg:sticky lg:top-6">
+      <div className="flex items-center gap-4">
+        <div className="h-20 w-20 rounded-2xl overflow-hidden border border-slate-200 bg-slate-100">
+          <img src={profile.photoPath} alt={profile.name} className="h-full w-full object-cover" />
+        </div>
+        <div>
+          <h1 className="text-xl font-semibold">{profile.name}</h1>
+          <div className="text-slate-600">{profile.title}</div>
+          <div className="text-sm text-slate-500 mt-1">{profile.location}</div>
+        </div>
+      </div>
+
+      <div className="mt-5 flex flex-wrap gap-2">
+        <a className="badge" href={profile.resumePath} download>Download Resume</a>
+        <a className="badge" href="#about">About</a>
+        <a className="badge" href="#skills">Skills</a>
+        <a className="badge" href="#experience">Experience</a>
+        <a className="badge" href="#contact">Contact</a>
+      </div>
+
+      <div className="mt-6 space-y-3">
+        <LinkRow label="Email" href={`mailto:${profile.email}`} value={profile.email} />
+        <LinkRow label="Phone" value={profile.phone} />
+        <LinkRow label="LinkedIn" href={profile.linkedin} value="Open" />
+        <LinkRow label="GitHub" href={profile.github} value="Open" />
+        <LinkRow label="Medium" href={profile.medium} value="Open" />
+      </div>
+
+      <div className="mt-6 border-t border-slate-100 pt-5 text-xs text-slate-500 leading-relaxed">
+        Replace <span className="font-medium">public/photo.jpg</span> and <span className="font-medium">public/resume.pdf</span> with your latest files.
+      </div>
+    </div>
+  )
+}
+EOF
+
+cat > "$PROJECT/src/components/Skills.jsx" << 'EOF'
+import React from 'react'
+import Section from './Section.jsx'
+import { skills } from '../data.js'
+
+export default function Skills() {
+  return (
+    <Section id="skills" title="Skills">
+      <div className="space-y-6">
+        {Object.entries(skills).map(([category, items]) => (
+          <div key={category}>
+            <div className="text-sm font-semibold text-slate-700 mb-2">{category}</div>
+            <div className="flex flex-wrap gap-2">
+              {items.map((s) => (
+                <span key={s} className="badge">{s}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  )
+}
+EOF
+
+cat > "$PROJECT/src/components/Experience.jsx" << 'EOF'
+import React from 'react'
+import Section from './Section.jsx'
+import { experience } from '../data.js'
+
+export default function Experience() {
+  return (
+    <Section id="experience" title="Experience">
+      <div className="space-y-4">
+        {experience.map((x, idx) => (
+          <div key={idx} className="rounded-xl border border-slate-100 p-4 bg-slate-50/60">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+              <div>
+                <div className="font-semibold">{x.company}</div>
+                <div className="text-slate-600">{x.role}</div>
+                <div className="text-sm text-slate-500">{x.location}</div>
+              </div>
+              <div className="text-sm font-medium text-slate-600">{x.years}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  )
+}
+EOF
+
+cat > "$PROJECT/src/components/Contact.jsx" << 'EOF'
+import React from 'react'
+import Section from './Section.jsx'
+import { profile } from '../data.js'
+
+export default function Contact() {
+  return (
+    <Section id="contact" title="Resume & Contact">
+      <div className="space-y-3 text-slate-700 leading-relaxed">
+        <p>
+          Download my resume and connect with me through email or LinkedIn. I’m open to discussions around senior full-stack roles,
+          enterprise application development, cloud-native delivery, and microservices architecture.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          <a className="badge" href={profile.resumePath} download>Download Resume</a>
+          <a className="badge" href={`mailto:${profile.email}`}>Email</a>
+          <a className="badge" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
+          <a className="badge" href={profile.medium} target="_blank" rel="noreferrer">Medium</a>
+          <a className="badge" href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+        <div className="text-sm text-slate-600">
+          Phone: <span className="font-medium text-slate-800">{profile.phone}</span>
+        </div>
+      </div>
+    </Section>
+  )
+}
+EOF
+
+cat > "$PROJECT/src/components/Footer.jsx" << 'EOF'
+import React from 'react'
+import { profile } from '../data.js'
+
+export default function Footer() {
+  return (
+    <footer className="text-center text-sm text-slate-500 py-4">
+      © {new Date().getFullYear()} {profile.name} — Built with React + Vite + Tailwind
+    </footer>
+  )
+}
+EOF
+
+# ---------- App.jsx ----------
+cat > "$PROJECT/src/App.jsx" << 'EOF'
+import React from 'react'
+import Sidebar from './components/Sidebar.jsx'
+import Section from './components/Section.jsx'
+import Skills from './components/Skills.jsx'
+import Experience from './components/Experience.jsx'
+import Contact from './components/Contact.jsx'
+import Footer from './components/Footer.jsx'
+import { aboutLines } from './data.js'
+
+export default function App() {
+  return (
+    <div className="min-h-screen">
+      <div className="max-w-6xl mx-auto px-5 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <aside className="lg:col-span-4">
+            <Sidebar />
+          </aside>
+
+          <main className="lg:col-span-8 space-y-6">
+            <Section id="about" title="About">
+              <div className="space-y-3 text-slate-700 leading-relaxed">
+                {aboutLines.map((line, idx) => (
+                  <p key={idx}>{line}</p>
+                ))}
+              </div>
+            </Section>
+
+            <Skills />
+            <Experience />
+            <Contact />
+            <Footer />
+          </main>
+        </div>
+      </div>
+    </div>
+  )
+}
+EOF
+
+# ---------- README.md ----------
+cat > "$PROJECT/README.md" << 'EOF'
+# Navya Portfolio v2 (React + Vite + Tailwind)
+
+## Setup
+```bash
+npm install
+npm run dev
