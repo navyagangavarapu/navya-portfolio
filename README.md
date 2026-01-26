@@ -78,6 +78,7 @@ You can add new sections by copying existing section patterns in `portfolio.jsx`
 
 ## 📧 Contact
 - **Email**: navyagangavarapu05@gmail.com
+- 
 - **Phone**: +1 (909) 907-9247
 - **LinkedIn**: [Your LinkedIn Profile]
 
