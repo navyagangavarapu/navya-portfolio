@@ -1,0 +1,217 @@
+import React from 'react';
+import { Mail, Phone, Linkedin, FileText, Github, BookOpen } from 'lucide-react';
+
+export default function Portfolio() {
+  const skills = {
+    "Programming Languages": ["Java (8/11/17)", "JavaScript", "TypeScript", "Python", "SQL", "PL/SQL", "C", "C++"],
+    "Frontend Technologies": ["React.js", "Angular", "Redux", "NgRx", "HTML5", "CSS3", "Tailwind CSS", "Material-UI", "PrimeNG", "Bootstrap", "Jest"],
+    "Backend Frameworks": ["Spring Boot", "Spring Cloud", "Spring Security", "Spring Data JPA", "Hibernate", "Node.js", "Express.js", "GraphQL"],
+    "Databases": ["MySQL", "PostgreSQL", "MongoDB", "Couchbase", "Oracle", "Redis", "Apache Cassandra", "Azure Cosmos DB"],
+    "Messaging & Streaming": ["Apache Kafka", "Kafka Streams", "RabbitMQ", "Azure Service Bus"],
+    "Cloud Platforms": ["AWS (EC2, S3, Lambda, RDS, EKS)", "Azure", "Google Cloud Platform"],
+    "DevOps & CI/CD": ["Jenkins", "GitLab CI/CD", "Azure DevOps", "Docker", "Kubernetes", "Git", "GitHub"],
+    "Testing & Tools": ["JUnit", "Mockito", "Selenium", "Postman", "RestAssured", "TestContainers"],
+    "Monitoring": ["ELK Stack", "Prometheus", "Grafana", "CloudWatch", "Log4J"]
+  };
+
+  const experience = [
+    {
+      title: "Java Full Stack Developer",
+      company: "Prime Healthcare",
+      location: "Irvine, CA",
+      period: "Oct 2024 - Present"
+    },
+    {
+      title: "Java Full Stack Developer",
+      company: "NW Natural",
+      location: "Portland, Oregon",
+      period: "Aug 2023 - Sep 2024"
+    },
+    {
+      title: "Full Stack Java Developer",
+      company: "Bluetree Network",
+      location: "Madison, WI",
+      period: "Dec 2021 - Jul 2023"
+    },
+    {
+      title: "Software Engineer",
+      company: "Home BancShares",
+      location: "Conway, AR",
+      period: "Jun 2020 - Dec 2021"
+    },
+    {
+      title: "Associate Software Engineer",
+      company: "Pramati Technologies Pvt Ltd",
+      location: "Hyderabad, India",
+      period: "Jun 2018 - May 2020"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm sticky top-0 z-50">
+        <nav className="max-w-6xl mx-auto px-6 py-4">
+          <div className="flex justify-between items-center">
+            <h1 className="text-2xl font-bold text-blue-600">Navya Gangavarapu</h1>
+            <div className="flex gap-4">
+              <a href="#about" className="text-gray-700 hover:text-blue-600 transition">About</a>
+              <a href="#skills" className="text-gray-700 hover:text-blue-600 transition">Skills</a>
+              <a href="#experience" className="text-gray-700 hover:text-blue-600 transition">Experience</a>
+              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition">Contact</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      {/* Hero Section with Photo */}
+      <section className="max-w-6xl mx-auto px-6 py-16">
+        <div className="flex flex-col md:flex-row items-center gap-12">
+          <div className="w-64 h-64 rounded-full overflow-hidden shadow-2xl border-4 border-blue-500 flex-shrink-0">
+            <img 
+              src="photo.jpg" 
+              alt="Navya Gangavarapu" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="flex-1 text-center md:text-left">
+            <h2 className="text-5xl font-bold text-gray-800 mb-4">Navya Gangavarapu</h2>
+            <p className="text-2xl text-blue-600 mb-6">Senior Java Full Stack Developer</p>
+            <p className="text-lg text-gray-600 mb-8">AWS Certified Solutions Architect - Associate</p>
+            
+            {/* Contact Buttons */}
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start" id="contact">
+              <a href="mailto:navyagangavarapu05@gmail.com" className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition shadow-md">
+                <Mail size={20} />
+                Email
+              </a>
+              <a href="tel:+19099079247" className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition shadow-md">
+                <Phone size={20} />
+                Call
+              </a>
+              <a href="https://www.linkedin.com/in/gangavarapu-navya-9500b9231" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-blue-800 text-white rounded-lg hover:bg-blue-900 transition shadow-md">
+                <Linkedin size={20} />
+                LinkedIn
+              </a>
+              <a href="https://medium.com/@navyagangavarapu05" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition shadow-md">
+                <BookOpen size={20} />
+                Medium
+              </a>
+              <a href="resume.pdf" download className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition shadow-md">
+                <FileText size={20} />
+                Resume
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="bg-white py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <h3 className="text-3xl font-bold text-gray-800 mb-8 text-center">About Me</h3>
+          <div className="max-w-4xl mx-auto text-gray-700 text-lg leading-relaxed space-y-4">
+            <p>
+              I'm a Senior Java Full Stack Developer with over 8 years of experience building enterprise-scale applications across healthcare, utilities, banking, and consulting industries. My expertise spans the complete software development lifecycle, from requirements gathering and architecture design to deployment and production support.
+            </p>
+            <p>
+              As an AWS Certified Solutions Architect, I specialize in designing cloud-native applications and microservices architectures that prioritize scalability, security, and reliability. I have extensive hands-on experience with modern frontend frameworks like React and Angular, coupled with robust backend development using Spring Boot and event-driven architectures.
+            </p>
+            <p>
+              Throughout my career, I've successfully delivered complex solutions for internal platforms supporting critical business operations, ensuring compliance with industry regulations while maintaining high performance under demanding workloads. I'm passionate about clean code, test-driven development, and leveraging cutting-edge technologies to solve real-world business challenges. I thrive in collaborative Agile environments and am committed to continuous learning and professional growth.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <h3 className="text-3xl font-bold text-gray-800 mb-12 text-center">Technical Skills</h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Object.entries(skills).map(([category, items]) => (
+              <div key={category} className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition">
+                <h4 className="text-xl font-semibold text-blue-600 mb-4">{category}</h4>
+                <div className="flex flex-wrap gap-2">
+                  {items.map((skill) => (
+                    <span key={skill} className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm border border-blue-200">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="bg-white py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <h3 className="text-3xl font-bold text-gray-800 mb-12 text-center">Professional Experience</h3>
+          <div className="max-w-4xl mx-auto space-y-6">
+            {experience.map((job, index) => (
+              <div key={index} className="bg-gradient-to-r from-blue-50 to-white rounded-lg shadow-md p-6 hover:shadow-lg transition border-l-4 border-blue-600">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
+                  <div>
+                    <h4 className="text-xl font-bold text-gray-800">{job.title}</h4>
+                    <p className="text-lg text-blue-600 font-semibold">{job.company}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-gray-600">{job.period}</p>
+                    <p className="text-gray-500">{job.location}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education & Certification */}
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <h3 className="text-3xl font-bold text-gray-800 mb-12 text-center">Education & Certification</h3>
+          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h4 className="text-xl font-semibold text-blue-600 mb-2">Master of Science</h4>
+              <p className="text-gray-700 font-medium">Information Systems and Technology</p>
+              <p className="text-gray-600">California State University, San Bernardino</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-md p-6">
+              <h4 className="text-xl font-semibold text-blue-600 mb-2">Bachelor of Technology</h4>
+              <p className="text-gray-700 font-medium">Computer Science and Engineering</p>
+              <p className="text-gray-600">PVP Siddhartha Institute of Technology, India</p>
+            </div>
+            <div className="bg-gradient-to-r from-orange-50 to-white rounded-lg shadow-md p-6 md:col-span-2 border-l-4 border-orange-500">
+              <h4 className="text-xl font-semibold text-orange-600 mb-2">AWS Certified Solutions Architect - Associate</h4>
+              <p className="text-gray-600">January 2026</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-8">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <p className="mb-4">© 2026 Navya Gangavarapu. All rights reserved.</p>
+          <div className="flex justify-center gap-6">
+            <a href="mailto:navyagangavarapu05@gmail.com" className="hover:text-blue-400 transition">
+              <Mail size={24} />
+            </a>
+            <a href="https://www.linkedin.com/in/gangavarapu-navya-9500b9231" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
+              <Linkedin size={24} />
+            </a>
+            <a href="https://github.com/navyagangavarapu" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">
+              <Github size={24} />
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+// Render the component
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Portfolio />);
